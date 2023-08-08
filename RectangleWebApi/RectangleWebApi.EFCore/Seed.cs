@@ -11,7 +11,7 @@ namespace RectangleWebApi.EFCore
     public class Seed
     {
         // generate method return 200 random rectangles with random points
-        public List<Rectangle> Generate(int count)
+        public List<RectangleStored> GenerateRectangles(int count)
         {
             var rectangles = new List<Rectangle>();
             var random = new Random();
@@ -27,11 +27,19 @@ namespace RectangleWebApi.EFCore
                 };
                 rectangles.Add(rectangle);
             }
-            return rectangles;
+
+            List<RectangleStored> result = rectangles.Select(r => new RectangleStored()
+            {
+                PointX = r.X,
+                PointY = r.Y,
+                Width = r.Width,
+                Height = r.Height
+            }).ToList();
+            return result;
         }
 
         // generate method return 200 random points
-        public List<Point> GeneratePoints(int count)
+        public List<PointStored> GeneratePoints(int count)
         {
             var points = new List<Point>();
             var random = new Random();
@@ -45,7 +53,12 @@ namespace RectangleWebApi.EFCore
                 };
                 points.Add(point);
             }
-            return points;
+            var result = points.Select(p => new PointStored()
+            {
+                PointX = p.X,
+                PointY = p.Y
+            }).ToList();
+            return result;
         }
     }
 }

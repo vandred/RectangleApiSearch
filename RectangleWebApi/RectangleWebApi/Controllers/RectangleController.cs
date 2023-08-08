@@ -14,7 +14,7 @@ namespace RectangleWebApi.Controllers
         {
             var classSeed = new RectangleWebApi.EFCore.Seed();
 
-            var rectangles = classSeed.Generate(200);
+            var rectangles = classSeed.GenerateRectangles(200);
 
             var points = classSeed.GeneratePoints(200);
 
