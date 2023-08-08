@@ -10,7 +10,7 @@ namespace RectangleWebApi.EFCore
 {
     public class RectangleWebApiDbContext : DbContext
     {
-        public RectangleWebApiDbContext() => Database.EnsureCreated();
+       // public RectangleWebApiDbContext() => Database.EnsureCreated();
 
         public DbSet<PointStored> PointStoreds { get; set; }
         public DbSet<RectangleStored> RectangleStoreds { get; set; }
@@ -18,13 +18,12 @@ namespace RectangleWebApi.EFCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=RectangleWebApiDb;Trusted_Connection=True;");
+           // optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Rectangle1;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var seed = new Seed();
-            modelBuilder.Entity<PointStored>().HasKey(p => new { p.PointX, p.PointY });
             modelBuilder.Entity<RectangleStored>().HasData(seed.GenerateRectangles(200));
         }
     }

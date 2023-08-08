@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RectangleWebApi.Core
 {
-    public class PointStored: Entity
+    public abstract class Entity
     {
-        public int PointX { get; set; }
-        public int PointY { get; set; }
+        public int Id { get; set; }
     }
 }
