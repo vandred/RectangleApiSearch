@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RectangleWebApi.ViewModel;
 using System.Text.Json;
 
 namespace RectangleWebApi.Controllers
@@ -22,6 +23,15 @@ namespace RectangleWebApi.Controllers
             string jsonPoints = JsonSerializer.Serialize(points.FirstOrDefault());
 
             return new string[] { "rectangles", jsonRectangles, "points",jsonPoints };
+        }
+
+        [HttpPost]
+        public IEnumerable<string> PostListOfPoints(List<PointView> points)
+        {
+
+            string jsonPoints = JsonSerializer.Serialize(points.FirstOrDefault());
+
+            return new string[] {  "points", jsonPoints };
         }
     }
 }
